@@ -1,0 +1,2 @@
+export const GITHUB_GIST_API_ENDPOINT = process.env.GITHUB_GIST_API_ENDPOINT || 'https://api.github.com'
+export const GITHUB_GIST_TOKEN = process.env.GITHUB_GIST_TOKEN || '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'

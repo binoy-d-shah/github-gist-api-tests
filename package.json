@@ -1,0 +1,26 @@
+{
+  "name": "github-gist-api-tests",
+  "version": "1.0.0",
+  "description": "Playwright automation suite for testing the github gits API tests.",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/binoy-d-shah/github-gist-api-tests.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/binoy-d-shah/github-gist-api-tests/issues"
+  },
+  "homepage": "https://github.com/binoy-d-shah/github-gist-api-tests#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.14.1",
+    "dotenv": "^16.5.0",
+    "playwright": "^1.52.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
