@@ -63,12 +63,6 @@ npx playwright test tests --workers=3
 npx playwright test tests/e2eTestSuite.spec.ts --workers=3
 ```
 
-### Run Tests in Parallel
-
-```bash
-npx playwright test --workers=3
-```
-
 ---
 
 ## 📊 Reporting
