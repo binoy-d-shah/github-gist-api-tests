@@ -19,9 +19,12 @@ test.describe('Update Gist API Tests', () => {
      * The gist ID will be saved for use in the update tests.
      */
     test.beforeEach(async ({ request }) => {
+        // Send create gist API call
         const response = await createGist(request, createGistTestData.validPublicGist);
+        // Verify the response contents
         expect(response.status()).toBe(201);
         const body = await response.json();
+        // Get the gistID value from the response
         gistId = body.id;
     });
 
@@ -31,8 +34,10 @@ test.describe('Update Gist API Tests', () => {
      * - Sends a request to update the gist description and content.
      */
     test('should update gist description and content', async ({ request }) => {
-
+        // Send update gist API call
         const response = await updateGist(request, gistId, updateGistTestData.updateGistDescriptionAndContent);
+        
+        // Verify the response contents
         expect(response.status()).toBe(200);
         const body = await response.json();
         expect(body.description).toBe(updateGistTestData.updateGistDescriptionAndContent.description);
@@ -66,8 +71,10 @@ test.describe('Update Gist API Tests', () => {
      * - Sends a request to rename a file within the gist.
      */
     test('should rename a file in the gist', async ({ request }) => {
-    
+        // Send update gist API call
         const response = await updateGist(request, gistId, updateGistTestData.renameFile);
+        
+        // Verify the response contents
         expect(response.status()).toBe(200);
         const body = await response.json();
         expect(body.description).toBe(updateGistTestData.renameFile.description);
@@ -101,7 +108,10 @@ test.describe('Update Gist API Tests', () => {
      * - Sends a request to delete a file from the gist.
      */
     test('should delete a file from gist', async ({ request }) => {
+        // Send update gist API call
         const response = await updateGist(request, gistId, updateGistTestData.deleteFile);
+        
+        // Verify the response contents
         expect(response.status()).toBe(200);
         const body = await response.json();
         expect(body.description).toBe(updateGistTestData.deleteFile.description);
@@ -116,7 +126,10 @@ test.describe('Update Gist API Tests', () => {
      * - Sends a request to update a gist with an invalid ID.
      */
     test('should return 404 for invalid gist ID', async ({ request }) => {
+        // Send update gist API call
         const response = await updateGist(request, 'invalid-gistId', updateGistTestData.deleteFile);
+        
+        // Verify the response contents
         const body = await response.json();
         expect(response.status()).toBe(404);
         expect(body.message).toBe(updateGistTestData.errorMessages.notFoundErrorMessage);
@@ -129,12 +142,16 @@ test.describe('Update Gist API Tests', () => {
      * - Sends a request to update multiple files at once in a gist.
      */
     test('should update multiple files at once', async ({ request }) => {
+        // Send update gist API call with multiple files
         let response = await createGist(request, createGistTestData.multipleFiles);
+        // Verify the response contents
         expect(response.status()).toBe(201);
         let body = await response.json();
         gistId = body.id;
 
+        // Send update gist API call with multiple files
         response = await updateGist(request, gistId, updateGistTestData.updateMultiupleFiles);
+        // Verify the response contents
         expect(response.status()).toBe(200);
         body = await response.json();
         expect(body.description).toBe(updateGistTestData.updateMultiupleFiles.description);

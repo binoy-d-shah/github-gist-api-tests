@@ -34,7 +34,10 @@ test.describe('Create Gist API Tests', () => {
    * - Sends a request to create a public gist with valid data (description and file content).
    */
   test('Create a public gist with valid data', async () => {
+    // Send create gist API call
     const response = await createGist(request, createGistTestData.validPublicGist);
+    
+    // Verify the response contents
     expect(response.status()).toBe(201);
     const body = await response.json();
     expect(body.description).toBe(createGistTestData.validPublicGist.description);
@@ -68,7 +71,10 @@ test.describe('Create Gist API Tests', () => {
    * - Sends a request to create a private gist with valid data (description and file content).
    */
   test('Create a private gist', async () => {
+    // Send create gist API call
     const response = await createGist(request, createGistTestData.validPrivateGist);
+    
+    // Verify the response contents
     expect(response.status()).toBe(201);
     const body = await response.json();
     expect(body.description).toBe(createGistTestData.validPrivateGist.description);
@@ -102,7 +108,10 @@ test.describe('Create Gist API Tests', () => {
    * - Sends a request to create a gist with no description provided.
    */
   test('Create gist with empty description', async () => {
+    // Send create gist API call
     const response = await createGist(request, createGistTestData.emptyDescription);
+    
+    // Verify the response contents
     expect(response.status()).toBe(201);
     const body = await response.json();
     expect(body.description).toBe(createGistTestData.emptyDescription.description);
@@ -136,7 +145,10 @@ test.describe('Create Gist API Tests', () => {
    * - Sends a request to create a gist with no files provided.
    */
   test('Fail to create gist with no files', async () => {
+    // Send create gist API call
     const response = await createGist(request, createGistTestData.noFiles);
+    
+    // Verify the response contents
     expect(response.status()).toBe(422);
     const body = await response.json();
     expect(body.message).toBe(createGistTestData.errorMessages.validationFailedErrorMessage);
@@ -152,6 +164,7 @@ test.describe('Create Gist API Tests', () => {
    * - Sends a request to create a gist with empty file content.
    */
   test('Fail to create gist with empty file content', async () => {
+    // Send create gist API call
     const response = await createGist(request, createGistTestData.emptyFileContent);
     expect(response.status()).toBe(422);
     const body = await response.json();
@@ -167,8 +180,10 @@ test.describe('Create Gist API Tests', () => {
    * - Sends a request to create a gist with an invalid authentication token.
    */
   test('Fail with invalid token (unauthorized)', async () => {
+    // Send create gist API call
     const response = await createGistWithInvalidHeaders(request, createGistTestData.validPublicGist);
 
+    // Verify the response contents
     expect(response.status()).toBe(401);
     const body = await response.json();
     expect(body.message).toBe(createGistTestData.errorMessages.unauthorizedErrorMessage);
@@ -182,7 +197,10 @@ test.describe('Create Gist API Tests', () => {
    */
 
   test('Create a public gist with multiple files data', async () => {
+    // Send create gist API call
     const response = await createGist(request, createGistTestData.multipleFiles);
+    
+    // Verify the response contents
     expect(response.status()).toBe(201);
     const body = await response.json();
     expect(body.description).toBe(createGistTestData.multipleFiles.description);

@@ -18,9 +18,12 @@ test.describe('Delete Gist API Tests', () => {
      * The gist ID will be saved for use in the delete tests.
      */
     test.beforeEach(async ({ request }) => {
+        // Send create gist API call
         const response = await createGist(request, createGistTestData.validPublicGist);
+        // Verify the response contents
         expect(response.status()).toBe(201);
         const body = await response.json();
+        // Get the gistID value from the response
         gistId = body.id;
     });
 
@@ -30,7 +33,10 @@ test.describe('Delete Gist API Tests', () => {
      * - Sends a request to delete an existing gist using the valid gist ID.
      */
     test('should delete an existing gist successfully', async ({ request }) => {
+        // Send delete gist API call
         const response = await deleteGist(request, gistId);
+        
+        // Verify the response contents
         expect(response.status()).toBe(204);
     });
 
@@ -40,8 +46,10 @@ test.describe('Delete Gist API Tests', () => {
      * - Sends a request to delete a gist that does not exist (non-existent ID).
      */
     test('should return 404 when deleting non-existent gist', async ({ request }) => {
+        // Send delete gist API call
         const response = await deleteGist(request, 'non-existing-id');
 
+        // Verify the response contents
         expect(response.status()).toBe(404);
         const body = await response.json();
         expect(body.message).toContain(updateGistTestData.errorMessages.notFoundErrorMessage);
@@ -53,8 +61,10 @@ test.describe('Delete Gist API Tests', () => {
      * - Sends a request to delete a gist without providing an authorization token.
      */
     test('should return 401 when no auth token is provided', async ({ request }) => {
+        // Send delete gist API call
         const response = await deleteGistWithInvalidHeaders(request, gistId);
 
+        // Verify the response contents
         expect(response.status()).toBe(401);
         const body = await response.json();
         expect(body.message).toBe(createGistTestData.errorMessages.unauthorizedErrorMessage);
@@ -68,12 +78,16 @@ test.describe('Delete Gist API Tests', () => {
      * - Then, sends a second request to delete the same gist, expecting a 404 response.
      */
     test('should return 404 if gist was already deleted', async ({ request }) => {
-        // First delete
+        // Send first delete gist API call
         const firstResponse = await deleteGist(request, gistId);
+        
+        // Verify the response contents
         expect(firstResponse.status()).toBe(204);
 
-        // Second delete
+        // Send second delete gist API call
         const secondResponse = await deleteGist(request, gistId);
+        
+        // Verify the response contents
         expect(secondResponse.status()).toBe(404);
         const body = await secondResponse.json();
         expect(body.message).toContain(updateGistTestData.errorMessages.notFoundErrorMessage);
