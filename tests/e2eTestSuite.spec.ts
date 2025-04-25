@@ -3,9 +3,20 @@ import { createGist, getGist, updateGist, deleteGist, starGist, unstarGist, isGi
 import { createGistTestData } from '../testData/createGistTestData';
 import { updateGistTestData } from '../testData/updateGistTestData';
 
+/**
+ * End-to-End (E2E) tests for GitHub Gists using Playwright.
+ */
 test.describe('E2E Gist Tests', () => {
     let gistId: string;
 
+    /**
+    * End-to-end test for full Gist lifecycle:
+    * - Create a public gist and verify the response.
+    * - Read the gist back and confirm data matches.
+    * - Update the gist and verify updated content.
+    * - Star and unstar the gist, checking for correct status codes.
+    * - Delete the gist and verify deletion via API.
+    */
     test('should create, update, star, unstar, and delete a gist successfully', async ({ request }) => {
         // 1. Create the gist and verify response data 
         let response = await createGist(request, createGistTestData.validPublicGist);
@@ -69,6 +80,32 @@ test.describe('E2E Gist Tests', () => {
         expect(response.status()).toBe(404);
     });
 
+    /**
+    * Combined API + UI scenario:
+    * - Create a public Gist using API.
+    * - Navigate to its UI page.
+    * - Verify the filename and file content are visible.
+    */
+    test('Create Gist via API and verify filename on UI', async ({ request, page }) => {
+        // 1. Create the gist and verify response data 
+        let response = await createGist(request, createGistTestData.validPublicGist);
+        expect(response.status()).toBe(201);
+        let body = await response.json();
+        let gistUrl = body.html_url;
+        let testDataFileKeys = Object.keys(createGistTestData.validPublicGist.files)[0];
+
+        // Step 2: Verify gist is visible in the UI
+        await page.goto(gistUrl);
+        await expect(page.getByRole('link', { name: testDataFileKeys }).first()).toBeVisible();
+        await expect(page.getByText(createGistTestData.validPublicGist.files[testDataFileKeys].content)).toBeVisible();
+
+    });
+
+    /**
+    * (Skipped by default)
+    * Utility test to delete all available gists for cleanup.
+    * Use this carefully as it loops through all gists and removes them.
+    */
     test.skip('delete all gists', async ({ request }) => {
 
         // If data is more then test case might run more time
@@ -83,5 +120,5 @@ test.describe('E2E Gist Tests', () => {
         for (const gist of gists) {
             await deleteGist(request, `${gist.id}`);
         }
-    });  
+    });
 });
