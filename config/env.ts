@@ -1,2 +1,2 @@
-export const GIST_API_ENDPOINT = process.env.GITHUB_GIST_API_ENDPOINT || 'https://api.github.com'
-export const GIST_TOKEN = process.env.GITHUB_GIST_TOKEN || ''
+export const GIST_API_ENDPOINT = process.env.GIST_API_ENDPOINT || 'https://api.github.com'
+export const GIST_TOKEN = process.env.GIST_TOKEN || ''
