@@ -50,13 +50,13 @@ test.describe('Create Gist API Tests', () => {
     expect(body.files[responseFileKeys].language).toBe('Text');
     expect(body.files[responseFileKeys].raw_url).toContain(body.id);
 
-    expect(body.url).toBe(GITHUB_GIST_API_ENDPOINT + `/gists/` + body.id);
-    expect(body.forks_url).toContain(GITHUB_GIST_API_ENDPOINT + `/gists/` + body.id + `/forks`);
-    expect(body.commits_url).toContain(GITHUB_GIST_API_ENDPOINT + `/gists/` + body.id + `/commits`);
+    expect(body.url).toBe(GIST_API_ENDPOINT + `/gists/` + body.id);
+    expect(body.forks_url).toContain(GIST_API_ENDPOINT + `/gists/` + body.id + `/forks`);
+    expect(body.commits_url).toContain(GIST_API_ENDPOINT + `/gists/` + body.id + `/commits`);
     expect(body.git_pull_url).toContain(body.id);
     expect(body.git_push_url).toContain(body.id);
     expect(body.html_url).toContain(body.id);
-    expect(body.comments_url).toContain(GITHUB_GIST_API_ENDPOINT + `/gists/` + body.id + `/comments`);
+    expect(body.comments_url).toContain(GIST_API_ENDPOINT + `/gists/` + body.id + `/comments`);
 
     expect(body.truncated).toBe(false);
     expect(body.public).toBe(true);
