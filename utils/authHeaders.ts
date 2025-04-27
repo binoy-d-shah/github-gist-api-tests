@@ -1,4 +1,4 @@
-import { GITHUB_GIST_TOKEN } from '../config/env';
+import { GIST_TOKEN } from '../config/env';
 
 /**
  * Authorization headers used for authenticating requests to the GitHub Gist API with a valid token.
@@ -10,7 +10,7 @@ import { GITHUB_GIST_TOKEN } from '../config/env';
  * @property {string} User-Agent - The user agent string representing the client making the request. In this case, it mimics a Chrome browser on macOS.
  */
 export const authHeaders = {
-    'Authorization': `Bearer ${GITHUB_GIST_TOKEN}`,
+    'Authorization': `Bearer ${GIST_TOKEN}`,
     'Accept': 'application/vnd.github+json',
     'X-GitHub-Api-Version': '2022-11-28',
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.3659.806 Safari/537.36'
