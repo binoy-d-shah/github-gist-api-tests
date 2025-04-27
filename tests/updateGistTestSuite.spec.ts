@@ -2,7 +2,7 @@ import { test, expect, request } from '@playwright/test';
 import { createGist, updateGist } from '../utils/apiHelper';
 import { createGistTestData } from '../testData/createGistTestData';
 import { updateGistTestData } from '../testData/updateGistTestData';
-import { GITHUB_GIST_API_ENDPOINT } from '../config/env'
+import { GIST_API_ENDPOINT } from '../config/env'
 
 /**
  * Test Suite for Update Gist API
@@ -50,13 +50,13 @@ test.describe('Update Gist API Tests', () => {
         expect(body.files[responseFileKeys].language).toBe('Text');
         expect(body.files[responseFileKeys].raw_url).toContain(body.id);
 
-        expect(body.url).toBe(GITHUB_GIST_API_ENDPOINT + `/gists/` + body.id);
-        expect(body.forks_url).toContain(GITHUB_GIST_API_ENDPOINT + `/gists/` + body.id + `/forks`);
-        expect(body.commits_url).toContain(GITHUB_GIST_API_ENDPOINT + `/gists/` + body.id + `/commits`);
+        expect(body.url).toBe(GIST_API_ENDPOINT + `/gists/` + body.id);
+        expect(body.forks_url).toContain(GIST_API_ENDPOINT + `/gists/` + body.id + `/forks`);
+        expect(body.commits_url).toContain(GIST_API_ENDPOINT + `/gists/` + body.id + `/commits`);
         expect(body.git_pull_url).toContain(body.id);
         expect(body.git_push_url).toContain(body.id);
         expect(body.html_url).toContain(body.id);
-        expect(body.comments_url).toContain(GITHUB_GIST_API_ENDPOINT + `/gists/` + body.id + `/comments`);
+        expect(body.comments_url).toContain(GIST_API_ENDPOINT + `/gists/` + body.id + `/comments`);
 
         expect(body.truncated).toBe(false);
         expect(body.public).toBe(true);
@@ -87,13 +87,13 @@ test.describe('Update Gist API Tests', () => {
         expect(body.files[responseFileKeys].language).toBe('Text');
         expect(body.files[responseFileKeys].raw_url).toContain(body.id);
 
-        expect(body.url).toBe(GITHUB_GIST_API_ENDPOINT + `/gists/` + body.id);
-        expect(body.forks_url).toContain(GITHUB_GIST_API_ENDPOINT + `/gists/` + body.id + `/forks`);
-        expect(body.commits_url).toContain(GITHUB_GIST_API_ENDPOINT + `/gists/` + body.id + `/commits`);
+        expect(body.url).toBe(GIST_API_ENDPOINT + `/gists/` + body.id);
+        expect(body.forks_url).toContain(GIST_API_ENDPOINT + `/gists/` + body.id + `/forks`);
+        expect(body.commits_url).toContain(GIST_API_ENDPOINT + `/gists/` + body.id + `/commits`);
         expect(body.git_pull_url).toContain(body.id);
         expect(body.git_push_url).toContain(body.id);
         expect(body.html_url).toContain(body.id);
-        expect(body.comments_url).toContain(GITHUB_GIST_API_ENDPOINT + `/gists/` + body.id + `/comments`);
+        expect(body.comments_url).toContain(GIST_API_ENDPOINT + `/gists/` + body.id + `/comments`);
 
         expect(body.truncated).toBe(false);
         expect(body.public).toBe(true);
@@ -172,13 +172,13 @@ test.describe('Update Gist API Tests', () => {
         expect(body.files[responseFileKeys].language).toBe('Text');
         expect(body.files[responseFileKeys].raw_url).toContain(body.id);
 
-        expect(body.url).toBe(GITHUB_GIST_API_ENDPOINT + `/gists/` + body.id);
-        expect(body.forks_url).toContain(GITHUB_GIST_API_ENDPOINT + `/gists/` + body.id + `/forks`);
-        expect(body.commits_url).toContain(GITHUB_GIST_API_ENDPOINT + `/gists/` + body.id + `/commits`);
+        expect(body.url).toBe(GIST_API_ENDPOINT + `/gists/` + body.id);
+        expect(body.forks_url).toContain(GIST_API_ENDPOINT + `/gists/` + body.id + `/forks`);
+        expect(body.commits_url).toContain(GIST_API_ENDPOINT + `/gists/` + body.id + `/commits`);
         expect(body.git_pull_url).toContain(body.id);
         expect(body.git_push_url).toContain(body.id);
         expect(body.html_url).toContain(body.id);
-        expect(body.comments_url).toContain(GITHUB_GIST_API_ENDPOINT + `/gists/` + body.id + `/comments`);
+        expect(body.comments_url).toContain(GIST_API_ENDPOINT + `/gists/` + body.id + `/comments`);
 
         expect(body.truncated).toBe(false);
         expect(body.public).toBe(true);

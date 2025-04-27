@@ -1,6 +1,6 @@
 import { APIRequestContext, APIResponse } from '@playwright/test';
 import { authHeaders, invalidAuthHeaders } from './authHeaders';
-import { GITHUB_GIST_API_ENDPOINT } from '../config/env'
+import { GIST_API_ENDPOINT } from '../config/env'
 
 /**
  * Creates a new Gist via the GitHub Gist API.
@@ -10,7 +10,7 @@ import { GITHUB_GIST_API_ENDPOINT } from '../config/env'
  * @returns - An API response containing the created Gist details or an error message.
  */
 export async function createGist(request: APIRequestContext, payload: any) {
-    return await request.post(`${GITHUB_GIST_API_ENDPOINT}/gists`, {
+    return await request.post(`${GIST_API_ENDPOINT}/gists`, {
         headers: authHeaders,
         data: payload
     });
@@ -25,7 +25,7 @@ export async function createGist(request: APIRequestContext, payload: any) {
  * @returns - An API response containing the updated Gist details or an error message.
  */
 export const updateGist = (request: APIRequestContext, gistId: string, payload: any) => {
-    return request.patch(`${GITHUB_GIST_API_ENDPOINT}/gists/${gistId}`, {
+    return request.patch(`${GIST_API_ENDPOINT}/gists/${gistId}`, {
         headers: authHeaders,
         data: payload
     });
@@ -39,7 +39,7 @@ export const updateGist = (request: APIRequestContext, gistId: string, payload: 
  * @returns - An API response confirming deletion or an error message.
  */
 export const deleteGist = (request: APIRequestContext, gistId: string) => {
-    return request.delete(`${GITHUB_GIST_API_ENDPOINT}/gists/${gistId}`, {
+    return request.delete(`${GIST_API_ENDPOINT}/gists/${gistId}`, {
         headers: authHeaders
     });
 };
@@ -52,7 +52,7 @@ export const deleteGist = (request: APIRequestContext, gistId: string) => {
  * @returns - An API response containing the requested Gist details or an error message.
  */
 export const getGist = (request: APIRequestContext, gistId: string) => {
-    return request.get(`${GITHUB_GIST_API_ENDPOINT}/gists/${gistId}`, {
+    return request.get(`${GIST_API_ENDPOINT}/gists/${gistId}`, {
         headers: authHeaders
     });
 };
@@ -64,7 +64,7 @@ export const getGist = (request: APIRequestContext, gistId: string) => {
  * @returns - An API response containing a list of all Gists.
  */
 export const listAllGist = (request: APIRequestContext) => {
-    return request.get(`${GITHUB_GIST_API_ENDPOINT}/gists`, {
+    return request.get(`${GIST_API_ENDPOINT}/gists`, {
         headers: authHeaders
     });
 };
@@ -77,7 +77,7 @@ export const listAllGist = (request: APIRequestContext) => {
  * @returns - An API response confirming the Gist was starred or an error message.
  */
 export const starGist = (request: APIRequestContext, gistId: string) => {
-    return request.put(`${GITHUB_GIST_API_ENDPOINT}/gists/${gistId}/star`, {
+    return request.put(`${GIST_API_ENDPOINT}/gists/${gistId}/star`, {
         headers: authHeaders
     });
 };
@@ -90,7 +90,7 @@ export const starGist = (request: APIRequestContext, gistId: string) => {
  * @returns - An API response confirming the Gist was unstarred or an error message.
  */
 export const unstarGist = (request: APIRequestContext, gistId: string) => {
-    return request.delete(`${GITHUB_GIST_API_ENDPOINT}/gists/${gistId}/star`, {
+    return request.delete(`${GIST_API_ENDPOINT}/gists/${gistId}/star`, {
         headers: authHeaders
     });
 };
@@ -103,7 +103,7 @@ export const unstarGist = (request: APIRequestContext, gistId: string) => {
  * @returns - An API response indicating whether the Gist is starred or an error message.
  */
 export const isGistStarred = (request: APIRequestContext, gistId: string) => {
-    return request.get(`${GITHUB_GIST_API_ENDPOINT}/gists/${gistId}/star`, {
+    return request.get(`${GIST_API_ENDPOINT}/gists/${gistId}/star`, {
         headers: authHeaders
     });
 };
@@ -116,7 +116,7 @@ export const isGistStarred = (request: APIRequestContext, gistId: string) => {
  * @returns - An API response indicating an error due to invalid authentication.
  */
 export const deleteGistWithInvalidHeaders = (request: APIRequestContext, gistId: string) => {
-    return request.delete(`${GITHUB_GIST_API_ENDPOINT}/gists/${gistId}`, {
+    return request.delete(`${GIST_API_ENDPOINT}/gists/${gistId}`, {
         headers: invalidAuthHeaders
     });
 };
@@ -129,7 +129,7 @@ export const deleteGistWithInvalidHeaders = (request: APIRequestContext, gistId:
  * @returns - An API response indicating an error due to invalid authentication.
  */
 export async function createGistWithInvalidHeaders(request: APIRequestContext, payload: any) {
-    return await request.post(`${GITHUB_GIST_API_ENDPOINT}/gists`, {
+    return await request.post(`${GIST_API_ENDPOINT}/gists`, {
         headers: invalidAuthHeaders,
         data: payload
     });
