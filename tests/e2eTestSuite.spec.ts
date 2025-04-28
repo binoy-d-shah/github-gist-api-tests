@@ -106,7 +106,7 @@ test.describe('E2E Gist Tests', () => {
     * Utility test to delete all available gists for cleanup.
     * Use this carefully as it loops through all gists and removes them.
     */
-    test.only('delete all gists', async ({ request }) => {
+    test.skip('delete all gists', async ({ request }) => {
 
         // If data is more then test case might run more time
         test.setTimeout(200000);
